@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>films — filmishmish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #f9f6f1;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      padding: 48px 24px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .title-link {
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .title-link:hover .title {
+      animation: wiggle 0.4s ease;
+    }
+
+    .title {
+      font-size: clamp(16px, 2.5vw, 22px);
+      letter-spacing: 0.04em;
+      color: #111;
+      line-height: 1;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .title .bold { font-weight: 700; }
+    .title .regular { font-weight: 400; }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .film-item {
+      width: 100%;
+    }
+
+    .film-title {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 400;
+      font-style: italic;
+      color: #111;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #e8e3db;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @keyframes wiggle {
+      0%   { transform: rotate(0deg); }
+      15%  { transform: rotate(-4deg); }
+      30%  { transform: rotate(4deg); }
+      45%  { transform: rotate(-3deg); }
+      60%  { transform: rotate(3deg); }
+      75%  { transform: rotate(-1.5deg); }
+      90%  { transform: rotate(1.5deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://asreenz.github.io/filmishmish/" class="title-link">
+      <h1 class="title">
+        <span class="bold">film</span><span class="regular">ishmish</span>
+      </h1>
+    </a>
+  </header>
+
+  <div class="gallery">
+
+    <div class="film-item">
+      <div class="film-title">the interruption</div>
+      <div class="video-wrapper">
+        <iframe src="https://player.vimeo.com/video/1112093550" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="film-item">
+      <div class="film-title">oh dear lord...</div>
+      <div class="video-wrapper">
+        <iframe src="https://player.vimeo.com/video/853217335" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="film-item">
+      <div class="film-title">i have this itch...</div>
+      <div class="video-wrapper">
+        <iframe src="https://player.vimeo.com/video/921635761" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
