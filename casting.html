@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casting — filmishmish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #f9f6f1;
+      font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 400;
+      color: #111;
+      padding: 28px 24px 120px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .title-link {
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .title-link:hover .title {
+      animation: wiggle 0.4s ease;
+    }
+
+    .title {
+      font-size: 12pt;
+      letter-spacing: 0.04em;
+      color: #111;
+      line-height: 1;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .title .bold    { font-weight: 700; }
+    .title .regular { font-weight: 400; }
+
+    /* Form wrapper */
+    .form-wrap {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .form-heading {
+      font-size: 12pt;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .form-sub {
+      font-size: 12pt;
+      font-weight: 400;
+      color: #888;
+      margin-bottom: 36px;
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 12pt;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 400;
+      color: #111;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #bbb;
+      padding: 6px 0 8px;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="date"] {
+      color: #111;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-bottom-color: #111;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+      line-height: 1.6;
+    }
+
+    /* Two-column row */
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .submit-btn {
+      margin-top: 36px;
+      background: none;
+      border: none;
+      border-bottom: 1px solid #111;
+      font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12pt;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #111;
+      padding: 6px 0;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .submit-btn:hover {
+      color: #888;
+      border-bottom-color: #888;
+    }
+
+    /* Confirmation message (hidden by default) */
+    .confirm {
+      display: none;
+      margin-top: 28px;
+      font-size: 12pt;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+
+    /* Watermark */
+    .watermark {
+      position: fixed;
+      bottom: -0.1em;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: 'Pinyon Script', cursive;
+      color: rgba(17, 17, 17, 0.07);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+      z-index: 0;
+    }
+
+    @keyframes wiggle {
+      0%   { transform: rotate(0deg); }
+      15%  { transform: rotate(-4deg); }
+      30%  { transform: rotate(4deg); }
+      45%  { transform: rotate(-3deg); }
+      60%  { transform: rotate(3deg); }
+      75%  { transform: rotate(-1.5deg); }
+      90%  { transform: rotate(1.5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @media (max-width: 480px) {
+      .row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://asreenz.github.io/filmishmish/" class="title-link">
+      <h1 class="title"><span class="bold">film</span><span class="regular">ishmish</span></h1>
+    </a>
+  </header>
+
+  <div class="form-wrap">
+    <div class="form-heading">Casting &amp; Submissions</div>
+    <div class="form-sub">Fill out the form below and we'll be in touch.</div>
+
+    <form id="castingForm" onsubmit="handleSubmit(event)">
+
+      <div class="row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 000 000 0000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="e.g. Actor submission, Crew inquiry..." required />
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about yourself, your experience, or your inquiry..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+      <div class="confirm" id="confirm">Thank you — we'll be in touch soon.</div>
+
+    </form>
+  </div>
+
+  <div class="watermark" id="watermark">filmishmish</div>
+
+  <script>
+    function scaleWatermark() {
+      const el = document.getElementById('watermark');
+      el.style.fontSize = '100px';
+      const scale = window.innerWidth / el.scrollWidth;
+      el.style.fontSize = (100 * scale) + 'px';
+    }
+    document.fonts.ready.then(scaleWatermark);
+    window.addEventListener('resize', scaleWatermark);
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('castingForm').style.display = 'none';
+      const confirm = document.getElementById('confirm');
+      confirm.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
