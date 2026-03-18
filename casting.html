@@ -258,7 +258,7 @@
     <br><br>No previous acting experience is necessary.<br>
     <br>THANK YOU!<br></div>
 
-    <form action="https://formspree.io/f/mlgpoznr" method="POST">
+    <form action="https://formspree.io/f/mlgpoznr" method="POST" enctype="multipart/form-data">
 
       <div class="row">
         <div class="field">
@@ -292,8 +292,8 @@
           <input type="text" id="role" name="role" placeholder="Write which role you are interested in" />
       </div>
 
-        <div class="field">
-        <label for="subject">Instagram</label>
+      <div class="field">
+        <label for="socials">Instagram</label>
         <input type="text" id="socials" name="instagram" placeholder="@instagram"/>
       </div>
 
@@ -304,7 +304,7 @@
 
       <div class="field">
         <label for="origin">Country of origin</label>
-        <input type="text" id="origin" name="origin" placeholder="Where are you & your family from originally?" required />
+        <input type="text" id="origin" name="origin" placeholder="Where are you &amp; your family from originally?" required />
       </div>
 
       <div class="field">
@@ -313,8 +313,8 @@
       </div>
 
       <div class="field">
-        <label for="subject">Height</label>
-        <input type="text" id="age" name="height" required />
+        <label for="height">Height</label>
+        <input type="text" id="height" name="height" required />
       </div>
 
       <div class="field">
@@ -325,15 +325,14 @@
       <div class="field">
         <label for="photos">Photos</label>
         <div class="upload-note">Please add 2–3 recent photos of yourself.</div>
-        <input type="file" id="photos" name="photos" accept="image/*" multiple required />
+        <input type="file" id="photos" name="attachment" accept="image/*" multiple required />
         <div class="file-label" id="fileLabel">No files selected</div>
       </div>
 
       <div class="field">
         <label for="notes">(Optional) Notes</label>
-        <input type="text" id="notes" name="subject" placeholder="Anything more you would like to add about yourself."/>
+        <input type="text" id="notes" name="notes" placeholder="Anything more you would like to add about yourself."/>
       </div>
-      
 
       <button type="submit" class="submit-btn">Submit</button>
       <div class="confirm" id="confirm">Thank you — we'll be in touch soon.</div>
@@ -353,26 +352,15 @@
     document.fonts.ready.then(scaleWatermark);
     window.addEventListener('resize', scaleWatermark);
 
-    // File upload label click
     document.getElementById('fileLabel').addEventListener('click', () => {
       document.getElementById('photos').click();
     });
 
     document.getElementById('photos').addEventListener('change', function() {
       const files = Array.from(this.files);
-      if (files.length === 0) {
-        document.getElementById('fileLabel').textContent = 'No files selected';
-      } else {
-        document.getElementById('fileLabel').textContent = files.map(f => f.name).join(', ');
-      }
+      document.getElementById('fileLabel').textContent =
+        files.length === 0 ? 'No files selected' : files.map(f => f.name).join(', ');
     });
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      document.getElementById('castingForm').style.display = 'none';
-      const confirm = document.getElementById('confirm');
-      confirm.style.display = 'block';
-    }
   </script>
 
 </body>
