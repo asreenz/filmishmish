@@ -193,6 +193,13 @@
       letter-spacing: 0.05em;
     }
 
+    .file-error {
+      display: none;
+      font-size: 11pt;
+      color: #c0392b;
+      margin-top: 6px;
+    }
+
     /* Watermark */
     .watermark {
       position: fixed;
@@ -324,9 +331,10 @@
 
       <div class="field">
         <label for="photos">Photos</label>
-        <div class="upload-note">Please add 2–3 recent photos of yourself. Each image max 25mb!</div>
+        <div class="upload-note">Please add 2–3 recent photos of yourself.</div>
         <input type="file" id="photos" name="attachment" accept="image/*" multiple required />
         <div class="file-label" id="fileLabel">No files selected</div>
+        <div class="file-error" id="fileError">Total file size exceeds 25MB. Please reduce the size or number of photos.</div>
       </div>
 
       <div class="field">
@@ -358,8 +366,19 @@
 
     document.getElementById('photos').addEventListener('change', function() {
       const files = Array.from(this.files);
-      document.getElementById('fileLabel').textContent =
-        files.length === 0 ? 'No files selected' : files.map(f => f.name).join(', ');
+      const totalSize = files.reduce((sum, f) => sum + f.size, 0);
+      const maxSize = 25 * 1024 * 1024; // 25MB
+      const errorEl = document.getElementById('fileError');
+      const labelEl = document.getElementById('fileLabel');
+
+      if (totalSize > maxSize) {
+        errorEl.style.display = 'block';
+        labelEl.textContent = 'No files selected';
+        this.value = '';
+      } else {
+        errorEl.style.display = 'none';
+        labelEl.textContent = files.length === 0 ? 'No files selected' : files.map(f => f.name).join(', ');
+      }
     });
   </script>
 
